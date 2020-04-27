@@ -36,7 +36,7 @@ class MemeSchema(ma.Schema):
 meme_schema = MemeSchema()
 memes_schema = MemeSchema(many=True)
 
-@app.route("/"):
+@app.route("/")
 def gretting():
     return "<h1>Meme Maker API</h1>"
 
@@ -49,7 +49,7 @@ def add_meme():
     new_meme = Meme(text, image, favorite)
 
     db.session.add(new_meme)
-    de.session.commit()
+    db.session.commit()
 
     meme = Meme.query.get(new_meme.id)
     return meme_schema.jsonify(meme)
@@ -60,7 +60,7 @@ def get_memes():
     result = memes_schema.dump(all_memes)
     return jsonify(result)
 
-@app.route("meme/<id>", methods=["GET"])
+@app.route("/meme/<id>", methods=["GET"])
 def get_meme(id):
     meme = Meme.query.get(id)
 

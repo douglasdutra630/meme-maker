@@ -80,7 +80,7 @@ def update_meme(id):
 def delete_meme(id):
     meme = Meme.query.get(id)
 
-    db.sessions.delete(meme)
+    db.session.delete(meme)
     db.session.commit()
 
     return ('DELETED.')
